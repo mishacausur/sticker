@@ -9,5 +9,12 @@ public class Main {
         double y;
         y = 6.7;
         System.out.println(y);
+
+        String text;
+
+        text = "hello ";
+
+        String name = "Friend";
+        System.out.println(text + name);
     }
 }
