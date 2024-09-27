@@ -5,12 +5,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите цену товара (в руб.): ");
-        int cost = scanner.nextInt();
-        System.out.print("Введите вес товара (в кг.): ");
-        int weight = scanner.nextInt();
-        int result = CustomService.calculateCustoms(cost, weight);
-        System.out.print("Размер пошлины (в руб.) составит: " + result);
+        int count = 10;
+
+        while (count > 0) {
+            System.out.println("counter is in progress");
+        }
     }
 }
