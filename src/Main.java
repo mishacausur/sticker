@@ -9,7 +9,7 @@ public class Main {
 
         while (count < 10) {
             count++;
-            System.out.println("counter is in progress");
+            System.out.println("counter is in progress, " + count);
             Thread.sleep(300);
         }
     }
