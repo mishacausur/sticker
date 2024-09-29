@@ -7,8 +7,11 @@ public class Main {
 
         int count = 0;
 
-        while (count < 10) {
+        while (count < 30) {
             count++;
+            if (count % 2 == 0) {
+                continue;
+            }
             System.out.println("counter is in progress, " + count);
             Thread.sleep(300);
         }
