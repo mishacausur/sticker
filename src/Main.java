@@ -7,10 +7,13 @@ public class Main {
 
         int count = 0;
 
-        while (count < 30) {
+        while (count < 2000) {
             count++;
             if (count % 2 == 0) {
                 continue;
+            }
+            if (count > 50) {
+                break;
             }
             System.out.println("counter is in progress, " + count);
             Thread.sleep(300);
