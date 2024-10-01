@@ -7,9 +7,9 @@ public class Main {
 
         int count = 0;
 
-        while (count < 2000) {
+        while (count < 1000) {
             count++;
-            if (count % 2 == 0) {
+            if (count % 3 == 0) {
                 continue;
             }
             System.out.println("counter is in progress, " + count);
