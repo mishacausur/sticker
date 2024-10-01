@@ -12,11 +12,11 @@ public class Main {
             if (count % 2 == 0) {
                 continue;
             }
+            System.out.println("counter is in progress, " + count);
+            Thread.sleep(300);
             if (count > 50) {
                 break;
             }
-            System.out.println("counter is in progress, " + count);
-            Thread.sleep(300);
         }
     }
 }
