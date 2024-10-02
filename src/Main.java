@@ -7,7 +7,7 @@ public class Main {
 
         int count = 0;
 
-        while (count < 1000) {
+        while (count < 10000) {
             count++;
             if (count % 3 == 0) {
                 continue;
