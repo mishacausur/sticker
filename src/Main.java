@@ -9,7 +9,7 @@ public class Main {
 
         while (count < 10000) {
             count++;
-            if (count % 3 == 0) {
+            if (count % 5 == 0) {
                 continue;
             }
             System.out.println("counter is in progress, " + count);
