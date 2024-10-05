@@ -5,18 +5,10 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        int count = 0;
 
-        while (count < 100) {
-            count++;
-            if (count % 5 == 0) {
-                continue;
-            }
-            System.out.println("counter is in progress, " + count);
+        for (int i = 0; i < 10; i++) {
+            System.out.println("counter is in progress, " + i);
             Thread.sleep(300);
-            if (count > 50) {
-                break;
-            }
         }
     }
 }
