@@ -1,8 +1,24 @@
 import library.*;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(String[] args) {
+
+        int[] arr = new int[3];
+        arr[0] = 11;
+        arr[1] = 6;
+        arr[2] = 91;
+
+        int[] arr2 = { 11, 6, 91 };
+
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr2));
+    }
+
+    public static  void buildBookers() {
         Author stephen = new Author("Stephen", "King", 8);
         Book it = new Book("It", (short) 2024, stephen, 723);
         System.out.println("Is this book big? " + it.isBig());
