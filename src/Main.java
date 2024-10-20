@@ -14,8 +14,9 @@ public class Main {
 
         int[] arr2 = { 11, 6, 91 };
 
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(arr2));
+        System.out.println(arr == arr2);
+        System.out.println(arr.equals(arr2));
+        System.out.println(Arrays.equals(arr, arr2));
     }
 
     public static  void buildBookers() {
