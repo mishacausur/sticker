@@ -2,11 +2,55 @@ import library.*;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+        String[] products = {"Хлеб", "Яблоки", "Молоко"};
+        int[] prices = {100, 200, 300};
+        int[] selectedProducts = new int[products.length];
+
+
+
+        System.out.println("Список возможных товаров для покупки");
+        for (int i = 0; i < products.length; i++) {
+            System.out.println((i + 1) + ". " + products[i] + " " + prices[i] + " руб/шт");
+        }
+
+        boolean isProgramActive = true;
+        while (isProgramActive) {
+            System.out.println("Выберите товар и количество или введите `end`");
+            String input = scanner.nextLine();
+            if (input.equals("end")) {
+                isProgramActive = false;
+                break;
+            }
+            String[] inputs = input.split(" ");
+            int selectedProduct = Integer.parseInt(inputs[0]) - 1;
+            int productCount = Integer.parseInt(inputs[1]);
+
+            selectedProducts[selectedProduct] += productCount;
+        }
+
+        System.out.println("Ваша корзина:");
+
+        int count = 0;
+        for (int i = 0; i < selectedProducts.length; i++) {
+            int selected = selectedProducts[i];
+            if (selected != 0) {
+                int sum = prices[i] * selected;
+                count += sum;
+                System.out.println(products[i] + " "  + selected + " шт " + prices[i] + " руб/шт " + sum + " в сумме");
+            }
+        }
+
+        System.out.println("Итого " + count + " руб");
+    }
+
+    public static void buildArrays() {
         int[] arr = new int[3];
         arr[0] = 11;
         arr[1] = 6;
@@ -25,6 +69,7 @@ public class Main {
         Arrays.sort(arr);
         System.out.println(Arrays.toString(arr));
         System.out.println(Arrays.toString(arr3));
+        System.out.println(arr.length);
     }
 
     public static  void buildBookers() {
