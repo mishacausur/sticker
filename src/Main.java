@@ -17,6 +17,14 @@ public class Main {
         System.out.println(arr == arr2);
         System.out.println(arr.equals(arr2));
         System.out.println(Arrays.equals(arr, arr2));
+
+        for (int num: arr2) {
+            System.out.println(num * num);
+        }
+        int[] arr3 = arr.clone();
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
+        System.out.println(Arrays.toString(arr3));
     }
 
     public static  void buildBookers() {
