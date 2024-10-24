@@ -1,83 +1,69 @@
-import library.*;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Random;
 
 public class Main {
 
+    private static final int SIZE = 8;
+
     public static void main(String[] args) {
+        int[][] origin = buildMatrix();
+        printMatrix(origin);
+        System.out.println();
 
-        Scanner scanner = new Scanner(System.in);
-        String[] products = {"Хлеб", "Яблоки", "Молоко"};
-        int[] prices = {100, 200, 300};
-        int[] selectedProducts = new int[products.length];
+        int[][] rotated = rotateMatrix(origin, 270);
+        printMatrix(rotated);
+    }
 
-
-
-        System.out.println("Список возможных товаров для покупки");
-        for (int i = 0; i < products.length; i++) {
-            System.out.println((i + 1) + ". " + products[i] + " " + prices[i] + " руб/шт");
+    public static int[][] buildMatrix() {
+        int[][] matrix = new int[SIZE][SIZE];
+        Random random = new Random();
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = random.nextInt(255);
+            }
         }
+        return  matrix;
+    }
 
-        boolean isProgramActive = true;
-        while (isProgramActive) {
-            System.out.println("Выберите товар и количество или введите `end`");
-            String input = scanner.nextLine();
-            if (input.equals("end")) {
-                isProgramActive = false;
+    public static void printMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.printf("%4d ", matrix[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] rotateMatrix(int[][] origin, int angle) {
+        int[][] matrix = new int[origin.length][origin.length];
+        for (int i = 0; i < origin.length; i++) {
+            for (int j = 0; j < origin[i].length; j++) {
+                matrix[i][j] = origin[(origin.length - 1) - j][i];
+            }
+        }
+        switch (angle) {
+            case 90:
+                for (int i = 0; i < origin.length; i++) {
+                    for (int j = 0; j < origin[i].length; j++) {
+                        matrix[i][j] = origin[(origin.length - 1) - j][i];
+                    }
+                }
                 break;
-            }
-            String[] inputs = input.split(" ");
-            int selectedProduct = Integer.parseInt(inputs[0]) - 1;
-            int productCount = Integer.parseInt(inputs[1]);
-
-            selectedProducts[selectedProduct] += productCount;
+            case 180:
+                for (int i = 0; i < origin.length; i++) {
+                    for (int j = 0; j < origin[i].length; j++) {
+                        matrix[i][j] = origin[(origin.length - 1) - i][(origin.length - 1) - j];
+                    }
+                }
+                break;
+            case 270:
+                for (int i = 0; i < origin.length; i++) {
+                    for (int j = 0; j < origin[i].length; j++) {
+                        matrix[i][j] = origin[j][(origin.length - 1) - i];
+                    }
+                }
+                break;
+            default: matrix = origin;
         }
-
-        System.out.println("Ваша корзина:");
-
-        int count = 0;
-        for (int i = 0; i < selectedProducts.length; i++) {
-            int selected = selectedProducts[i];
-            if (selected != 0) {
-                int sum = prices[i] * selected;
-                count += sum;
-                System.out.println(products[i] + " "  + selected + " шт " + prices[i] + " руб/шт " + sum + " в сумме");
-            }
-        }
-
-        System.out.println("Итого " + count + " руб");
-    }
-
-    public static void buildArrays() {
-        int[] arr = new int[3];
-        arr[0] = 11;
-        arr[1] = 6;
-        arr[2] = 91;
-
-        int[] arr2 = { 11, 6, 91 };
-
-        System.out.println(arr == arr2);
-        System.out.println(arr.equals(arr2));
-        System.out.println(Arrays.equals(arr, arr2));
-
-        for (int num: arr2) {
-            System.out.println(num * num);
-        }
-        int[] arr3 = arr.clone();
-        Arrays.sort(arr);
-        System.out.println(Arrays.toString(arr));
-        System.out.println(Arrays.toString(arr3));
-        System.out.println(arr.length);
-    }
-
-    public static  void buildBookers() {
-        Author stephen = new Author("Stephen", "King", 8);
-        Book it = new Book("It", (short) 2024, stephen, 723);
-        System.out.println("Is this book big? " + it.isBig());
-        System.out.println("Does this book name contains \"It\" " + it.matches("it"));
-        System.out.println("Does this book name contains \"king\" " + it.matches("king"));
-        System.out.println("How much does this book cost? " + it.estimatePrice() + " rub");
+        return  matrix;
     }
 }
