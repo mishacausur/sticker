@@ -1,69 +1,77 @@
-import java.util.Random;
-
 public class Main {
 
-    private static final int SIZE = 8;
-
     public static void main(String[] args) {
-        int[][] origin = buildMatrix();
-        printMatrix(origin);
-        System.out.println();
+        SmartRobot robot = new SmartRobot();
+        robot.moveDown();
+        robot.moveDown();
+        robot.moveLeft();
+        robot.moveUp();
+        robot.moveDown();
+        robot.moveLeft();
+        robot.moveLeft();
 
-        int[][] rotated = rotateMatrix(origin, 270);
-        printMatrix(rotated);
+        System.out.println("Координаты робота: " + robot.getX() + ":" + robot.getY());
+        System.out.println("Количество шагов: " + robot.getStepsCount());
+    }
+}
+
+class Robot {
+    private int x;
+    private int y;
+
+    public void moveRight() {
+        x++;
     }
 
-    public static int[][] buildMatrix() {
-        int[][] matrix = new int[SIZE][SIZE];
-        Random random = new Random();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = random.nextInt(255);
-            }
-        }
-        return  matrix;
+    public void moveLeft() {
+        x--;
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                System.out.printf("%4d ", matrix[i][j]);
-            }
-            System.out.println();
-        }
+    public void moveUp() {
+        y--;
     }
 
-    public static int[][] rotateMatrix(int[][] origin, int angle) {
-        int[][] matrix = new int[origin.length][origin.length];
-        for (int i = 0; i < origin.length; i++) {
-            for (int j = 0; j < origin[i].length; j++) {
-                matrix[i][j] = origin[(origin.length - 1) - j][i];
-            }
-        }
-        switch (angle) {
-            case 90:
-                for (int i = 0; i < origin.length; i++) {
-                    for (int j = 0; j < origin[i].length; j++) {
-                        matrix[i][j] = origin[(origin.length - 1) - j][i];
-                    }
-                }
-                break;
-            case 180:
-                for (int i = 0; i < origin.length; i++) {
-                    for (int j = 0; j < origin[i].length; j++) {
-                        matrix[i][j] = origin[(origin.length - 1) - i][(origin.length - 1) - j];
-                    }
-                }
-                break;
-            case 270:
-                for (int i = 0; i < origin.length; i++) {
-                    for (int j = 0; j < origin[i].length; j++) {
-                        matrix[i][j] = origin[j][(origin.length - 1) - i];
-                    }
-                }
-                break;
-            default: matrix = origin;
-        }
-        return  matrix;
+    public void moveDown() {
+        y++;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+}
+
+class SmartRobot extends Robot {
+    private int count = 0;
+
+    @Override
+    public void moveRight() {
+        super.moveRight();
+        count++;
+    }
+
+    @Override
+    public void moveLeft() {
+        super.moveLeft();
+        count++;
+    }
+
+    @Override
+    public void moveUp() {
+        super.moveUp();
+        count++;
+    }
+
+    @Override
+    public void moveDown() {
+        super.moveDown();
+        count++;
+    }
+
+    public int getStepsCount() {
+        return count;
     }
 }
