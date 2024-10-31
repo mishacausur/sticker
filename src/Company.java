@@ -24,7 +24,7 @@ public class Company {
     }
 
     public void payTaxes() {
-        int tax = 0;
+        int tax = taxSystem.calcTaxFor(debit, credit);
         System.out.printf("Компания %s уплатила налог в размере: %d руб.", title, tax);
         System.out.println();
         debit = 0;
