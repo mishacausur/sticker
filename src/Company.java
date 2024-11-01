@@ -35,11 +35,8 @@ public class Company {
     public int applyDeals(Deal[] deals) {
 
         for (int i = 0; i < deals.length; i++) {
-            if (deals[i].debitChange > 0) {
-                shiftMoney(deals[i].debitChange);
-            } else {
-                shiftMoney(-deals[i].creditChange);
-            }
+            shiftMoney(deals[i].getDebit());
+            shiftMoney(-deals[i].getCredit());
         }
         int amount = debit - credit;
         payTaxes();
