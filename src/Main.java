@@ -1,37 +1,54 @@
-import deal.Deal;
-import deal.Expenditure;
-import deal.Sale;
-import taxes.*;
+
+import account.Account;
+import account.CreditAccount;
+import account.SimpleAccount;
 
 public class Main {
 
     public static void main(String[] args) {
-        checkTask1();
-        checkTask2();
+        checkTransferFromSimpleAccount();
     }
 
-    public static void checkTask1() {
-        Company adidas = new Company("Adidas", new DebitMinusCreditTaxSystem());
-        adidas.shiftMoney(100);
-        adidas.shiftMoney(-50);
-        adidas.payTaxes();
+    public static void checkTransferFromSimpleAccount() {
+        SimpleAccount simple = new SimpleAccount();
+        CreditAccount credit = new CreditAccount(10000);
 
-        adidas.shiftMoney(1000);
-        adidas.payTaxes();
+        simple.add(20000);
+        simple.transfer(credit, 10);
+        System.out.println("Баланс получателя после перевода 4К - " + credit.getBalance());
+        System.out.println("Баланс отправителя после перевода 4К - " + simple.getBalance());
 
-        adidas.setTaxSystem(new RegularTaxSystem());
-        adidas.shiftMoney(100);
-        adidas.payTaxes();
+        credit.pay(3500);
+        simple.transfer(credit, 3000);
+        System.out.println("Баланс получателя после перевода 3К - " + credit.getBalance());
+        System.out.println("Баланс отправителя после перевода 3К - " +simple.getBalance());
+    }
+    public static void checkTransferFromCreditAccount() {
+        SimpleAccount simple = new SimpleAccount();
+        CreditAccount credit = new CreditAccount(5000);
+
+        credit.transfer(simple, 4000);
+        System.out.println("Баланс отправителя после перевода 4К - " + credit.getBalance());
+        System.out.println("Баланс получателя после перевода 4К - " + simple.getBalance());
     }
 
-    public static void checkTask2() {
-        Company nike = new Company("NIKE", new RegularTaxSystem());
-        Deal[] deals = {
-            new Sale("AirForce", 300),
-                new Expenditure("Xemore", 400),
-        };
-        nike.shiftMoney(1000);
-        System.out.println(nike.applyDeals(deals));
+    public static void checkCreditAccount() {
+        CreditAccount creditAccount = new CreditAccount(10000);
+        creditAccount.add(2000);
+        System.out.println("Баланс после добавления 2К - " + creditAccount.getBalance());
+        creditAccount.pay(8000);
+        System.out.println("Баланс после траты 8К - " + creditAccount.getBalance());
+        creditAccount.pay(5000);
+        System.out.println("Баланс после траты 5К - " + creditAccount.getBalance());
+    }
+    public static void checkSimpleAccount() {
+        SimpleAccount simple = new SimpleAccount();
+        simple.add(5000);
+        System.out.println("Баланс после добавления 5К - " + simple.getBalance());
+        simple.pay(10000);
+        System.out.println("Баланс после траты 10К - " + simple.getBalance());
+        simple.pay(3000);
+        System.out.println("Баланс после добавления 3К - " + simple.getBalance());
     }
 }
 
