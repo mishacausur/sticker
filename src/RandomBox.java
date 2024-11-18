@@ -15,10 +15,6 @@ public class RandomBox<T> {
         }
     }
 
-    public int getKey() {
-        return key;
-    }
-
     public T getValue() {
         return value;
     }
