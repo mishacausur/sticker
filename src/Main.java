@@ -1,15 +1,19 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Main {
 
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
         list.add("one");
-        System.out.println(list);
         list.add(0, "zero");
-        System.out.println(list);
-        System.out.println(list.size());
-        String zero = list.get(0);
-        System.out.println(zero);
+        list.add("two");
+        list.add("three");
+
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String s = iterator.next();
+            System.out.println(s);
+        }
     }
 }
