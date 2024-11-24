@@ -11,5 +11,9 @@ public class Main {
         for (Map.Entry<String, Integer> kv : map.entrySet()) {
             System.out.println(kv.getKey() + " is " + kv.getValue());
         }
+
+        for (String key : map.keySet()) {
+            System.out.println(key + " means " + map.get(key));
+        }
     }
 }
